@@ -40,6 +40,21 @@ and benefits of a conventional Storage Area Network (SAN).
                              |    +-----------+   |
                              +--------------------+
 
+==============================
+ High Availability / GW groups
+==============================
+High Availability (HA) provides I/O and control path redundancies for the host initiators. High Availability is also sometimes referred to as failover and failback support. The redundancy that HA creates is critical to protect against one or more gateway failures. With HA, the host can continue the I/O with only the possibility of performance latency until the failed gateways are back and functioning correctly.
+
+NVMe-oF gateways are virtually grouped into gateway groups and the HA domain sits within the gateway group. An NVMe-oF gateway group supports eight gateways. Each NVMe-oF gateway in the gateway group can be used as a path to any of the subsystems or namespaces that are defined in that gateway group. HA is effective with two or more gateways in a gateway group.
+
+High Availability is enabled by default. To use High Availability, a minimum of two gateways and listeners must be defined. 
+
+It is important to create redundancy between the host and the gateways. To create a fully redundant network connectivity, be sure that the host has two Ethernet ports that are connected to the gateways over a network with redundancy (for example, two network switches).
+
+The HA feature uses the Active/Standby approach for each namespace. Using Active/Standby means that at any point in time, only one of the NVMe-oF gateways serve I/O from the host to a specific namespace. To properly use all NVMe-oF gateways, each namespace is assigned to a different load-balancing group. The number of load-balancing groups is equal to the number of NVMe-oF gateways in the gateway group.
+
+With HA, if an NVMe-oF gateway fails, the initiator continues trying to connect. The amount of time that it tries to connect for depends on what is defined for the initiator. For more information about defining the reconnect time for the initiator and general configuration instructions, see Configuring the NVMe-oF gateway initiator.
+
 .. toctree::
   :maxdepth: 1
 
