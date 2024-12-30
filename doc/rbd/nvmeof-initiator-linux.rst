@@ -29,7 +29,7 @@ Installation
 
    .. prompt::  bash #
    
-      nvme discover -t tcp -a GATEWAY_IP -s 4420
+      nvme discover -t tcp -a GATEWAY_IP -s 8009
 
 4. Connect to the NVMe/TCP target:
 
